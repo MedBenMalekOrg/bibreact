@@ -10,7 +10,7 @@ function App() {
         <React.Fragment>
           <Switch>
             <Route exact path="/" component={Search} />
-            <Route exact path="/result" component={Result} />
+            <Route exact path="/result/:media/:filter/:search" component={Result} />
           </Switch>
         </React.Fragment>
       </Router>

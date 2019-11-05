@@ -2,7 +2,26 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom";
 
 class search extends Component {
+    state = {
+        media: '',
+        filter: '',
+        search: ''
+    }
+
+    onSubmit = e => {
+        e.preventDefault();
+
+        const { media, filter, search } = this.state;
+
+        this.props.history.push("/profile/" + media + "/" + filter + "/" + search);
+    };
+
+    onChange = e => this.setState({ [e.target.name]: e.target.value });
+    onChangeFilter = e => this.setState({ filter: e.target.value });
+    onChangeMedia = e => this.setState({ media: e.target.value });
+
     render() {
+        const { media, filter, search } = this.state;
         return (
             <React.Fragment>
                 <section className="intro-wrapper" style={{ backgroundColor: '#272b41' }}>
@@ -19,18 +38,28 @@ class search extends Component {
                                     <form action="all-listings-list.html" className="search_form">
                                         <div className="atbd_seach_fields_wrapper">
                                             <div className="single_search_field search_query">
-                                                <input className="form-control search_fields" type="text" placeholder="Que cherchez-vous?" />
+                                                <input className="form-control search_fields" type="text" placeholder="Que cherchez-vous?" onChange={this.onChange} name="search" value={search} />
                                             </div>
                                             <div className="single_search_field">
+                                                <select className="form-control" onChange={this.onChangeMedia}>
+                                                    <option value="">Sélectionnez le média</option>
+                                                    <option value="film">Film</option>
+                                                    <option value="musique">Musique</option>
+                                                    <option value="album">Album</option>
+                                                </select>
+                                            </div>
+                                            <div className="single_search_field" onChange={this.onChangeFilter}>
                                                 <select className="form-control">
-                                                    <option value>Sélectionnez le média</option>
-                                                    <option value="automobile">Film</option>
-                                                    <option value="education">Musique</option>
-                                                    <option value="event">Album</option>
+                                                    <option value="">Filtrer</option>
+                                                    <option value="genre">Genre</option>
+                                                    <option value="persone">Persone</option>
+                                                    <option value="titre">Titre</option>
                                                 </select>
                                             </div>
                                             <div className="atbd_submit_btn">
-                                                <Link to="/result" className="btn btn-dark btn-md btn-icon btn-icon">chercher</Link>
+                                                {media !== "" && filter !== "" && search !== "" ? <Link to={"/result/" + media + "/" + filter + "/" + search} className="btn btn-dark btn-md btn-icon btn-icon">chercher</Link> : <Link to="/" className="btn btn-md btn-icon btn-icon" style={{ backgroundColor: '#9e0518', color: 'white', cursor: 'no-drop' }}>Remplire</Link>}
+
+
                                             </div>
                                         </div>
                                     </form>{/* ends: .search_form */}

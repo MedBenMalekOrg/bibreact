@@ -4,18 +4,112 @@ import { Link } from "react-router-dom";
 
 class result extends Component {
     state = {
-        persons: []
+        result: []
     }
 
     componentDidMount() {
+        const { media, filter, search } = this.props.match.params
+        console.log(media + " " + filter + " " + search)
+
+        if (media === "film") {
+            if (filter === "genre") {
+                //...
+            }
+            if (filter === "persone") {
+                //...
+            }
+            if (filter === "titre") {
+                //...
+            }
+        }
+        if (media === "ebook") {
+            if (filter === "genre") {
+                //...
+            }
+            if (filter === "persone") {
+                //...
+            }
+            if (filter === "titre") {
+                //...
+            }
+        }
+        if (media === "album") {
+            if (filter === "genre") {
+                //...
+            }
+            if (filter === "persone") {
+                //...
+            }
+            if (filter === "titre") {
+                //...
+            }
+        }
         axios.get(`https://jsonplaceholder.typicode.com/users`)
             .then(res => {
                 const persons = res.data;
-                this.setState({ persons });
+                this.setState({ result: persons });
             })
     }
 
     render() {
+
+        const total = this.state.result.length
+        const getResults = this.state.result.map(item => (
+            <div className="col-lg-12 listing-items">
+                <div className="row">
+                    <div className="col-lg-12 order-0 order-lg-1">
+                        <div className="row">
+                            <div className="col-lg-12 ">
+                                <div className="atbd_single_listing atbd_listing_list ">
+                                    <article className="atbd_single_listing_wrapper ">
+                                        {/* ends: .atbd_listing_thumbnail_area */}
+                                        <div className="atbd_listing_info ">
+                                            <div className="atbd_content_upper ">
+                                                <h4 className="atbd_listing_title ">
+                                                    What's My Name?
+                                            </h4>
+                                                <div className="atbd_listing_meta ">
+                                                    <span className="atbd_meta atbd_listing_rating ">Music<i className="la la-music " /></span>
+
+                                                    <span className="atbd_meta atbd_badge_close ">Pop</span>
+                                                </div>
+                                                {/* End atbd listing meta */}
+                                                <div className="atbd_listing_data_list ">
+                                                    <ul>
+                                                        <li>
+                                                            <p><span className="la la-user " />Robyn Rihanna | chanteuse <span className="la la-clock-o" />1988/02/ 20</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><span className="la la-clock-o " />Duree: 3.51 min</p>
+                                                        </li>
+                                                        <li>
+                                                            <p><span className="la la-youtube-play" />Support: CD</p>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                {/* End atbd listing meta */}
+                                            </div>
+                                            {/* end .atbd_content_upper */}
+                                        </div>
+                                        {/* ends: .atbd_listing_info */}
+                                    </article>
+                                    {/* atbd_single_listing_wrapper */}
+                                </div>
+                                <div className="atbd_content_module atbd_listing_details" style={{ marginTop: '-29.45px', borderTop: 'none' }}>
+                                    <div className="atbdb_content_module_contents">
+                                        <p>"What's My Name", is a song performed by China Anne McClain, Thomas Doherty and Dylan Playfair, was released as second single on June 2, 2017 by Walt Disney Records..</p>
+                                    </div>
+                                </div>{/* ends: .atbd_content_module */}
+                            </div>
+                            {/* ends: .col-lg-12 */}
+                        </div>
+                    </div>
+                    {/* ends: .col-lg-8 */}
+                </div>
+                <br />
+            </div>
+        ));
+
         return (
             <React.Fragment>
                 <div>
@@ -47,65 +141,14 @@ class result extends Component {
                                     <div className="atbd_generic_header">
                                         <div className="atbd_generic_header_title">
                                             <h4>Tous les résultats</h4>
-                                            <p>Nombre total des résultats trouvées: 1</p>
+                                            <p>Nombre total des résultats trouvées: {total}</p>
                                         </div>
                                         {/* ends: .atbd_generic_header_title */}
                                     </div>
                                     {/* ends: .atbd_generic_header */}
                                 </div>
                                 {/* ends: .col-lg-12 */}
-                                <div className="col-lg-12 listing-items">
-                                    <div className="row">
-                                        <div className="col-lg-12 order-0 order-lg-1">
-                                            <div className="row">
-                                                <div className="col-lg-12 ">
-                                                    <div className="atbd_single_listing atbd_listing_list ">
-                                                        <article className="atbd_single_listing_wrapper ">
-                                                            {/* ends: .atbd_listing_thumbnail_area */}
-                                                            <div className="atbd_listing_info ">
-                                                                <div className="atbd_content_upper ">
-                                                                    <h4 className="atbd_listing_title ">
-                                                                        What's My Name?
-                                                                    </h4>
-                                                                    <div className="atbd_listing_meta ">
-                                                                        <span className="atbd_meta atbd_listing_rating ">Music<i className="la la-music " /></span>
-
-                                                                        <span className="atbd_meta atbd_badge_close ">Pop</span>
-                                                                    </div>
-                                                                    {/* End atbd listing meta */}
-                                                                    <div className="atbd_listing_data_list ">
-                                                                        <ul>
-                                                                            <li>
-                                                                                <p><span className="la la-user " />Robyn Rihanna | chanteuse <span className="la la-clock-o" />1988/02/ 20</p>
-                                                                            </li>
-                                                                            <li>
-                                                                                <p><span className="la la-clock-o " />Duree: 3.51 min</p>
-                                                                            </li>
-                                                                            <li>
-                                                                                <p><span className="la la-youtube-play" />Support: CD</p>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </div>
-                                                                    {/* End atbd listing meta */}
-                                                                </div>
-                                                                {/* end .atbd_content_upper */}
-                                                            </div>
-                                                            {/* ends: .atbd_listing_info */}
-                                                        </article>
-                                                        {/* atbd_single_listing_wrapper */}
-                                                    </div>
-                                                    <div className="atbd_content_module atbd_listing_details" style={{ marginTop: '-29.45px', borderTop: 'none' }}>
-                                                        <div className="atbdb_content_module_contents">
-                                                            <p>"What's My Name", is a song performed by China Anne McClain, Thomas Doherty and Dylan Playfair, was released as second single on June 2, 2017 by Walt Disney Records..</p>
-                                                        </div>
-                                                    </div>{/* ends: .atbd_content_module */}
-                                                </div>
-                                                {/* ends: .col-lg-12 */}
-                                            </div>
-                                        </div>
-                                        {/* ends: .col-lg-8 */}
-                                    </div>
-                                </div>
+                                {getResults}
                                 {/* ends: .listing-items */}
                             </div>
                         </div>
