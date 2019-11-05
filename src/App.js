@@ -8,12 +8,10 @@ function App() {
     <React.Fragment>
       <Router>
         <React.Fragment>
-          <Header />
           <Switch>
             <Route exact path="/" component={Search} />
             <Route exact path="/result" component={Result} />
           </Switch>
-          <Footer />
         </React.Fragment>
       </Router>
     </React.Fragment>
